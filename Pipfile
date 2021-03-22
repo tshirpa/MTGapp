@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ipykernel = "*"
+pillow = "*"
+requests = "*"
+mtgtools = "*"
+pyinstaller = "*"
+opencv-python = "*"
+pytesseract = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
