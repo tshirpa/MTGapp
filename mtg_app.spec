@@ -5,8 +5,8 @@ block_cipher = None
 
 a = Analysis(['mtg_app.py'],
              pathex=['C:\\Users\\tashi\\PycharmProjects\\Testing'],
-             binaries=[],
-             datas=[],
+             binaries=[('.\\MTGcardback.jpg', '.\\')],
+             datas=[('.\\read_from_image.py', '.\\'), ('.\\mtg_cards_settings.py', '.\\'), ('.\\update_db.py', '.\\'), ('.\\MTGCollection.txt', '.\\')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],

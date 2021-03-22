@@ -8,6 +8,7 @@ from PIL import Image, ImageTk
 from mtg_cards_settings import *
 import requests
 from mtgtools.MtgDB import MtgDB
+from pathlib import Path
 
 #GUI Class
 #Used as the "main class"
@@ -36,7 +37,8 @@ class GUI(Tk):
         self.draw_gui()
         self.shown_buttons = []
         self.page = 0
-        self.read_from_file("MTGCollection.txt.txt")
+        self.file_path = Path("~/Documents/MTGCollection.txt").expanduser()
+        self.read_from_file(self.file_path)
         self.draw_cards()
         self.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -45,27 +47,34 @@ class GUI(Tk):
     #post: it updates the file with new cards and amounts
     def close(self):
         print("Writing file...")
-        with open("MTGCollection.txt.txt", "w") as f:
-            for card in self.cards:
-                f.write(f"{card.amount} {card.name}\n")
-            f.close()
-        self.destroy()
+        try:
+            with open(self.file_path, "w") as f:
+                for card in self.cards:
+                    f.write(f"{card.amount} {card.name}\n")
+                f.close()
+        except Exception as e:
+            print("The Text file isn't in the right place.")
+        finally:
+            self.destroy()
 
     #reading from file method
     #pre: none
     #post: when the app is opened, this reads from the text file, telling the app which cards are in the database
     def read_from_file(self, filename):
-        with open(filename, "r") as file:
-            lines = file.readlines()
-            for line in lines:
-                if "\n" in line:
-                    line = line[:-1].split()
-                else:
-                    line = line.split()
-                amount = line[0]
-                name = " ".join(line[1:])
-                self.cards.append(Cards(int(amount), name, self))
-                self.searching_options["name"][name] = [self.cards[-1]]
+        try:
+            with open(filename, "r") as file:
+                lines = file.readlines()
+                for line in lines:
+                    if "\n" in line:
+                        line = line[:-1].split()
+                    else:
+                        line = line.split()
+                    amount = line[0]
+                    name = " ".join(line[1:])
+                    self.cards.append(Cards(int(amount), name, self))
+                    self.searching_options["name"][name] = [self.cards[-1]]
+        except Exception as e:
+            print(f"{e}\nThis means the file isn't in your Documents folder")
 
     #makes buttons for all the cards
     #pre: the card objects are made
@@ -224,7 +233,7 @@ class Cards:
         self.amount_label = Label(self.data_frame, text=f"Amount: {self.amount}")
         self.mana_cost_label = Label(self.data_frame, text=f"Mana cost: {self.mana_cost}")
         self.text_label = Label(self.data_frame, text=self.text)
-        self.color_identity = Label(self.data_frame, text=f"Colors: {', '.join(self.color_identity)}")
+        self.color_identity = Label(self.data_frame, text=f"Colors: {self.color_identity}")
 
         self.back_button.pack(side=LEFT)
         self.increase_amount.pack(side=LEFT)
