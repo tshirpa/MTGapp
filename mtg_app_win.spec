@@ -4,10 +4,10 @@ block_cipher = None
 
 
 a = Analysis(['mtg_app.py'],
-             pathex=['./'],
-             binaries=[],
-             datas=[('./MTGcardback.jpg', './'), ('./read_from_image.py', './'), ('./mtg_cards_settings.py', './'), ('./update_db.py', './'), ],
-             hiddenimports=['cv2'],
+             pathex=['C:\\Users\\tashi\\PycharmProjects\\Testing'],
+             binaries=[('.\\MTGcardback.jpg', '.\\')],
+             datas=[('.\\read_from_image.py', '.\\'), ('.\\mtg_cards_settings.py', '.\\'), ('.\\update_db.py', '.\\'), ('.\\MTGCollection.txt', '.\\')],
+             hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
