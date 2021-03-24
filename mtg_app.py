@@ -31,7 +31,10 @@ class GUI(Tk):
             "cmc": {},
             "mana_cost": {},
         }
-        self.mtg_db = MtgDB("my_db.fs")
+        # define the database root here -- you may need to
+        # consult the MtgDB API documentation as to how to properly define the path
+        self.db_path = Path('~/Documents/MTG_app_database.fs').expanduser()
+        self.mtg_db = MtgDB(self.db_path)
         # self.get_mtg_cards()
         self.cards_db = self.mtg_db.root.mtgio_cards
         self.draw_gui()
