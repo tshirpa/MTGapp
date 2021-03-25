@@ -31,7 +31,9 @@ class GUI(Tk):
             "cmc": {},
             "mana_cost": {},
         }
-        self.mtg_db = MtgDB("my_db.fs")
+        self.db_path = Path("~/Documents/'my_db.fs'").expanduser()
+        self.db_path_str = str(self.db_path)
+        self.mtg_db = MtgDB(self.db_path_str)
         # self.get_mtg_cards()
         self.cards_db = self.mtg_db.root.mtgio_cards
         self.draw_gui()
