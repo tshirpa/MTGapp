@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['mtg_app.py'],
-             pathex=['./', '/Users/aaronciuffo/Documents/src/MTGapp'],
+             pathex=['./', '/Users/aaronciuffo/Documents/src/mtg_fork'],
              binaries=[],
              datas=[('MTGcardback.jpg', './'), ('read_from_image.py', './'), ('./mtg_cards_settings.py', './'), ('./update_db.py', './')],
              hiddenimports=['cv2'],
