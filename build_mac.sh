@@ -9,3 +9,9 @@ pipenv run pyinstaller \
 --paths ./ \
 --clean --noconfirm --onefile \
 mtg_app.py
+
+pipenv run pyinstaller \
+--exclude-module IPython \
+--paths ./ \
+--clean --noconfirm --onefile \
+update_db.py
